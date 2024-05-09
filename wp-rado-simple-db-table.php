@@ -35,3 +35,5 @@ function wprado_form_shortcode() {
 }
 
 add_shortcode( 'wprado_form', 'wprado_form_shortcode' );
+
+require 'rest-api-extension.php';
