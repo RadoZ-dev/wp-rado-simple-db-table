@@ -10,30 +10,17 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
+if ( ! defined( 'ABSPATH' ) ) 
+{
+    exit;
+} // Exit if accessed directly
 
-function wprado_create_table() {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'simple_db_table';
-    $charset_collate = $wpdb->get_charset_collate();
+use SimpleDbTable\PluginInit;
 
-    $sql = "CREATE TABLE $table_name (
-        id int(11) NOT NULL AUTO_INCREMENT,
-        data varchar(255) NOT NULL,
-        PRIMARY KEY  (id)
-    ) $charset_collate;";
+define ( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta( $sql );
-}
-
-register_activation_hook( __FILE__, 'wprado_create_table' );
-
-function wprado_form_shortcode() {
-    ob_start();
-    include 'form-template.php';
-    return ob_get_clean();
-}
-
-add_shortcode( 'wprado_form', 'wprado_form_shortcode' );
+require_once( PLUGIN_DIR_PATH . 'vendor/autoload.php' );
 
 require 'rest-api-extension.php';
+
+PluginInit::getInstance();
