@@ -4,7 +4,7 @@ namespace SimpleDbTable;
 
 use SimpleDbTable\Helpers\SingletonTrait;
 use SimpleDbTable\DatabaseSetup\SimpleTable;
-use SimpleDbTable\Shortcodes\InsertDataForm;
+use SimpleDbTable\Shortcodes\SimpleDbForm;
 
 
 if ( ! defined( 'ABSPATH' ) ) 
@@ -24,6 +24,6 @@ class PluginInit
     public function init()
     {
         SimpleTable::getInstance();
-        InsertDataForm::getInstance();
+        SimpleDbForm::getInstance();
     }
 }
